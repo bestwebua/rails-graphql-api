@@ -1,0 +1,75 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/bestel/projects/rails-graphql-api/app/helpers/application_helper.rb": [
+        null,
+        null,
+        1,
+        null
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/models/item.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/models/application_record.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/models/user.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/channels/application_cable/channel.rb": [
+        null,
+        null,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/channels/application_cable/connection.rb": [
+        null,
+        null,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/jobs/application_job.rb": [
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/mailers/application_mailer.rb": [
+        null,
+        null,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/bestel/projects/rails-graphql-api/app/controllers/application_controller.rb": [
+        null,
+        null,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1563913457
+  }
+}
