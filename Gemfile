@@ -25,6 +25,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails_best_practices', require: false
   gem 'reek', '5.3.2', require: false
+  gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
@@ -40,8 +41,6 @@ end
 group :test do
   gem 'json_matchers', require: 'json_matchers/rspec'
   gem 'rails-controller-testing'
-  gem 'rspec'
-  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false

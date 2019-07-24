@@ -30,7 +30,6 @@ end
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
-require 'rspec/core'
 require 'rspec/rails'
 
 begin
