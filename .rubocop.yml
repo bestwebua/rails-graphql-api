@@ -9,6 +9,7 @@ AllCops:
     - vendor/**/*
     - spec/fixtures/**/*
     - tmp/**/*
+    - node_modules/**/*
 
 Rails:
   Enabled: true
