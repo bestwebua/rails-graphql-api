@@ -24,6 +24,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rails_best_practices', require: false
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
@@ -43,5 +44,4 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
-  gem 'undercover', require: false
 end

@@ -46,10 +46,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Installing dependency for undercover gem
-          command: sudo apt-get install cmake
-
       - <<: *install_bundler
       - <<: *restore_bundle_cache
       - <<: *bundle_install
@@ -97,10 +93,6 @@ jobs:
       - run:
           name: Running tests
           command: bundle exec rspec
-
-      - run:
-          name: Coverage
-          command: bundle exec undercover -c origin/develop
 
       - store_artifacts:
           path: ~/rails-graphql-api/coverage
