@@ -10,6 +10,7 @@ AllCops:
     - spec/fixtures/**/*
     - tmp/**/*
     - node_modules/**/*
+    - app/controllers/graphql_controller.rb
 
 Rails:
   Enabled: true

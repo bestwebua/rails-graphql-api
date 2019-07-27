@@ -24,7 +24,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rails_best_practices', require: false
-  gem 'reek', '5.3.2', require: false
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
