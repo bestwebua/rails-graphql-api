@@ -192,6 +192,10 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     require_all (2.0.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -298,6 +302,7 @@ DEPENDENCIES
   rails (~> 6.0.0.rc2)
   rails-controller-testing
   rails_best_practices
+  rspec
   rspec-rails
   rubocop
   rubocop-performance
