@@ -97,8 +97,6 @@ GEM
     graphql (1.9.7)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    imagen (0.1.8)
-      parser (>= 2.5, != 2.5.1.1)
     iniparse (1.4.4)
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
@@ -228,7 +226,6 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.13.1)
       sexp_processor (~> 4.9)
-    rugged (0.28.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -265,10 +262,6 @@ GEM
     tilt (2.0.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    undercover (0.3.2)
-      imagen (~> 0.1)
-      rainbow (>= 2.1, < 4.0)
-      rugged (>= 0.27, < 0.29)
     unicode-display_width (1.6.0)
     webpacker (4.0.7)
       activesupport (>= 4.2)
@@ -313,7 +306,6 @@ DEPENDENCIES
   simplecov-lcov
   spring
   spring-watcher-listen (~> 2.0.0)
-  undercover
   webpacker
 
 RUBY VERSION
