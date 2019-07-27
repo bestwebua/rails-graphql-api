@@ -32,10 +32,6 @@ PreCommit:
       - 'db/schema.rb'
       - 'db/structure.sql'
 
-  Reek:
-    enabled: true
-    flags: ['--force-exclusion']
-
   RuboCop:
     enabled: true
     flags: ['--format=emacs', '--force-exclusion', '--display-cop-names']

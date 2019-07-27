@@ -11,7 +11,7 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
   ]
 )
 
-SimpleCov.minimum_coverage(100)
+# SimpleCov.minimum_coverage(100)
 
 if ARGV.grep(/spec.\w+/).empty?
   SimpleCov.start 'rails' do
