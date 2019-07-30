@@ -8,8 +8,8 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(email:)
-      user = User.find_by!(email: email)
-      return {} unless user
+      user = User.find_by(email: email)
+      check_user!(user)
 
       {
         token: Base64.encode64(user.email),
