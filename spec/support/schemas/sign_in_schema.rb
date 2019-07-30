@@ -24,4 +24,13 @@ module SignInSchema
       end
     end
   end
+
+  InvalidParams = Dry::Schema.Params do
+    required(:errors).value(:array).each(:hash) do
+      schema do
+        required(:message).value(:string)
+        required(:extensions).value(:hash)
+      end
+    end
+  end
 end
