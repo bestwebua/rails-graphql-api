@@ -1,63 +1,37 @@
 # frozen_string_literal: true
 
-module Mutations
-  RSpec.describe AddItemMutation, type: :request do
+RSpec.describe Mutations::AddItemMutation do
+  subject(:resolver) { described_class.new(object: nil, context: context).resolve(**params) }
+
+  let(:title) { FFaker::Book.title }
+  let(:description) { FFaker::Book.description }
+  let(:image_url) { FFaker::Book.cover }
+  let(:context) { {} }
+  let(:params) { { title: title, description: description, image_url: image_url } }
+
+  context 'when user not authorized' do
+    it 'raises an exception' do
+      expect { resolver }.to raise_error(GraphQL::ExecutionError, Mutations::BaseMutation::AUTH_ERROR)
+    end
+  end
+
+  context 'when item successful saved' do
     let(:user) { create(:user) }
-    let(:token) { create_access_token(user.email) }
-    let(:title) { FFaker::Book.title }
-    let(:description) { FFaker::Book.description }
-    let(:image_url) { FFaker::Book.cover }
-    let(:variables) { { title: title, description: description, imageUrl: image_url } }
-    let(:params) { { query: mutation, variables: variables } }
-    let(:mutation) do
-      <<~GQL
-        mutation ($title: String!, $description: String, $imageUrl: String) {
-          addItem(title: $title, description: $description, imageUrl: $imageUrl) {
-            item {
-              id
-              title
-              description
-              imageUrl
-              user {
-                id
-              }
-            }
-            errors
-          }
-        }
-      GQL
+    let(:context) { { current_user: user } }
+
+    it 'returns hash with new item' do
+      expect { resolver }.to change(user.items, :count).from(0).to(1)
+      expect(resolver).to eq(item: user.items.last)
     end
+  end
 
-    before { post '/graphql', headers: headers, params: params }
+  context 'when item has validation errors' do
+    let(:user) { create(:user) }
+    let(:context) { { current_user: user } }
+    let(:title) { nil }
 
-    describe 'Success' do
-      let(:headers) { { Authorization: token } }
-
-      it 'renders json with new item' do
-        expect(response).to match_schema(AddItemSchema::Success)
-        expect(response).to be_ok
-      end
-    end
-
-    describe 'Failure' do
-      context 'when not authorized' do
-        let(:headers) { {} }
-
-        it 'renders json with error' do
-          expect(response).to match_schema(AddItemSchema::NotAuthorized)
-          expect(response).to be_ok
-        end
-      end
-
-      context 'when invalid value' do
-        let(:headers) { {} }
-        let(:title) { nil }
-
-        it 'renders json with error' do
-          expect(response).to match_schema(AddItemSchema::InvalidParams)
-          expect(response).to be_ok
-        end
-      end
+    it 'returns hash with error' do
+      expect(resolver).to eq(errors: ["Title can't be blank"])
     end
   end
 end

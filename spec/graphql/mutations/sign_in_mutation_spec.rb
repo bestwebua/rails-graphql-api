@@ -1,53 +1,24 @@
 # frozen_string_literal: true
 
-module Mutations
-  RSpec.describe SignInMutation, type: :request do
-    let(:variables) { { email: email } }
-    let(:data) { JSON.parse(response.body)['data']['signIn'] }
-    let(:mutation) do
-      <<~GQL
-        mutation($email: String!) {
-          signIn(email: $email) {
-            token
-            user {
-              id
-              fullName
-            }
-          }
-        }
-      GQL
+RSpec.describe Mutations::SignInMutation do
+  subject(:resolver) { described_class.new(object: nil, context: {}).resolve(**params) }
+
+  let(:user) { create(:user) }
+  let(:params) { { email: email } }
+
+  context 'when existing user' do
+    let(:email) { user.email }
+
+    it 'returns hash with token and user' do
+      expect(resolver).to eq(token: create_access_token(email), user: user)
     end
+  end
 
-    before { post '/graphql', params: { query: mutation, variables: variables } }
+  context 'when not existing user' do
+    let(:email) { 'not_existing@email.com' }
 
-    describe 'Success' do
-      let(:user) { create(:user) }
-      let(:email) { user.email }
-
-      it 'renders json with token, user data' do
-        expect(response).to match_schema(SignInSchema::Success)
-        expect(response).to be_ok
-      end
-    end
-
-    describe 'Failure' do
-      context 'when not existing user' do
-        let(:email) { 'not_user_email@domain.com' }
-
-        it 'renders json with error' do
-          expect(response).to match_schema(SignInSchema::UserNotFound)
-          expect(response).to be_ok
-        end
-      end
-
-      context 'when invalid email value' do
-        let(:variables) { {} }
-
-        it 'renders json with error' do
-          expect(response).to match_schema(SignInSchema::InvalidParams)
-          expect(response).to be_ok
-        end
-      end
+    it 'raises an exception' do
+      expect { resolver }.to raise_error(GraphQL::ExecutionError, Mutations::BaseMutation::USER_NOT_FOUND_ERROR)
     end
   end
 end
