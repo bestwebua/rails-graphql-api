@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
-module AddItemSchema
+module UpdateItemSchema
   Success = Dry::Schema.Params do
     required(:data).value(:hash).schema do
-      required(:addItem).value(:hash).schema do
+      required(:updateItem).value(:hash).schema do
         required(:item).value(:hash).schema do
           required(:id).value(:integer)
           required(:title).value(:string)
           optional(:description).maybe(:string)
           optional(:imageUrl).maybe(:string)
+          required(:user).value(:hash).schema do
+            required(:id).value(:integer)
+          end
         end
         required(:errors).value(:none?)
       end
@@ -17,7 +20,7 @@ module AddItemSchema
 
   NotAuthorized = Dry::Schema.Params do
     required(:data).value(:hash).schema do
-      required(:addItem).value(:none?)
+      required(:updateItem).value(:none?)
     end
     required(:errors).value(:array).each do
       schema do
