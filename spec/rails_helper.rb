@@ -31,6 +31,7 @@ end
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 require 'rspec/rails'
+require 'support/helpers'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -47,6 +48,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.include FactoryBot::Syntax::Methods
+  config.include Helpers
 end
 
 Shoulda::Matchers.configure do |config|

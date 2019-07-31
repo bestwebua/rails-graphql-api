@@ -39,7 +39,7 @@ group :development do
 end
 
 group :test do
-  gem 'json_matchers', require: 'json_matchers/rspec'
+  gem 'dry-schema', '~> 1.3', '>= 1.3.1'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
