@@ -13,9 +13,10 @@ module Mutations
       check_authentication!
 
       item = Item.new(title: title, description: description, image_url: image_url, user: context[:current_user])
-      return { item: item } if item.save
+      return { errors: item.errors.full_messages } unless item.save
 
-      { errors: item.errors.full_messages }
+      RailsGraphqlApiSchema.subscriptions.trigger('itemAdded', {}, item)
+      { item: item }
     end
   end
 end
