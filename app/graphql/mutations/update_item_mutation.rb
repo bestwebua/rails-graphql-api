@@ -14,9 +14,12 @@ module Mutations
       check_authentication!
 
       item = Item.find(id)
-      return { item: item } if item.update(title: title, description: description, image_url: image_url)
+      return { errors: item.errors.full_messages } unless item.update(
+        title: title, description: description, image_url: image_url
+      )
 
-      { errors: item.errors.full_messages }
+      RailsGraphqlApiSchema.subscriptions.trigger('itemUpdated', {}, item)
+      { item: item }
     end
   end
 end
